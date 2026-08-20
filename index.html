@@ -1,0 +1,558 @@
+<!DOCTYPE html> 
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Chef Suwijak Sopana</title>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+    <style>
+        /* --- 1. การตั้งค่าพื้นฐาน --- */ /* <!DOCTYPE html> = บอกเบราว์เซอร์ว่านี่คือเว็บแบบไหน
+                                         เริ่มต้นเว็บทั้งหน้า
+                                           lang="th" = บอกว่าเว็บนี้ใช้ภาษาไทย
+                                           <head> = ส่วนนี้ ไม่โชว์บนหน้าจอ แต่เอาไว้บอกข้อมูลให้เบราว์เซอร์รู้
+                                            <meta charset="UTF-8"> = บอกว่าเว็บนี้ใช้ตัวอักษรสาก → เพื่อให้ ภาษาไทยไม่กลายเป็นภาษาต่างดาว
+                                            <meta name="viewport" content="width=device-width, initial-scale=1.0"> = บอกว่า
+                                            “เว็บนี้แสดงผลให้พอดีกับมือถือ แท็บเล็ต คอมด้วยนะ” 
+                                            <title>Portfolio Chef Suwijak Sopana</title> = ชื่อเว็บ จะไปโผล่บน แท็บเบราว์เซอร์ด้านบน
+                                            <style> = เริ่มเขียน กฎการแต่งเว็บ เช่น สี ตัวอักษร ระยะห่าง*/
+                                            
+        * { /* = ทุกอย่างในเว็บ*/
+            margin: 0; /*ไม่เว้นขอบนอก*/
+            padding: 0; /*ไม่เว้นขอบใน*/
+            box-sizing: border-box; /*คิดขนาดกล่องแบบไม่เพี้ยน*/
+            font-family: 'Sarabun', sans-serif; /*ใช้ฟอนต์ Sarabun ทั้งเว็บ*/
+        }
+
+        body { /*ตัวเว็บทั้งหมด*/
+            line-height: 1.6; /*ตัวอักษรอ่านง่าย*/
+            color: #333; /*สีเทาเข้ม*/
+            background-color: #ffffff; /*พื้นหลังสีขาว*/
+        }
+
+        /* --- 2. เมนูนำทาง (Navigation) --- */
+        .navbar {
+            display: flex !important;
+            justify-content: space-between !important; /* สั่งดีดก้อนที่ 1 ไปซ้ายสุด และก้อนที่ 2 ไปขวาสุด */
+            align-items: center !important;            /* จัดให้อยู่กลางแนวตั้งเท่ากัน */
+            padding: 15px 5% !important;               /* เว้นระยะห่างจากขอบซ้ายขวา 5% ไม่ให้ชิดขอบจอเกินไป */
+        }
+
+        /* ตั้งค่าให้ตัว Portfolio เด่นขึ้นมา */
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        nav {
+            background: #0a015f; 
+            padding: 1rem; /*เลื่อนเว็บแล้ว เมนูไม่หาย*/
+            position: sticky; /*เลื่อนเว็บแล้ว เมนูไม่หาย*/
+            top: 0; /*ติดอยู่ด้านบน*/
+            z-index: 1000;
+            text-align: center;
+        }
+        
+            /*ลิงก์ในเมนู*/
+        nav a {
+            color: white; /*ตัวอักษรสีขาว*/
+            text-decoration: none; /*ไม่มีขีดเส้นใต้*/
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f1c40f; /* สีเหลืองทองเมื่อชี้ */
+        }
+
+        /* --- 3. หน้าแรก (Home Section) --- */
+        #home {
+            img {
+  max-width: 20%;
+  height: auto;
+            }
+            height: 100vh; /*หน้าแรกสูงเต็มจอ*/
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* พื้นหลัง: ไล่แสงขาวจากตรงกลางไปเขียวสด ซ้อนทับบนรูปภาพ ChatGPT.png */
+            background-image:/*พื้นหลัง: มีไล่แสง */
+                radial-gradient(circle, rgba(19, 2, 254, 0.4) 0%, rgba(4, 79, 144, 0.853) 70%, rgba(24, 21, 86, 0.95) 100%),
+                url('image/background/ChatGPT_1.png'); /*พื้นหลัง:มีไล่แสง*/
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* รูปโปรไฟล์หน้าแรก (วงกลม อยู่บนข้อความ) */
+        .home-profile-img { /*ทำรูปโปรไฟล์ให้ เป็นวงกลม*/
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        #home h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        #home p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* --- 4. ส่วนเนื้อหาทั่วไป (Section) --- */
+        section {
+            padding: 80px 20px; /*เว้นขอบให้เนื้อหาดูโล่ง อ่านง่าย*/
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 { /*หัวข้อใหญ่*/
+            text-align: center; /*อยู่ตรงกลาง*/
+            margin-bottom: 40px; /*มีเส้นใต้สีทอง*/
+            color: #000;
+            border-bottom: 3px solid #f1c40f;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* --- 5. เกี่ยวกับฉัน (About Section - รูปซ้าย ข้อความขวา) --- */
+        .about-content { /*รูปโปรไฟล์ทรงกลม*/
+            display: flex;
+            align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+            gap: 40px; /* ระยะห่างระหว่างรูปกับข้อความ */
+            flex-wrap: wrap; /* รองรับมือถือ */
+            justify-content: center;
+        }
+
+        .about-img-container {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .about-img-container img {
+            width: 250px; /* ขนาดรูปเล็กลงตามต้องการ */
+            height: 250px;
+            border-radius: 50%; /* ทรงกลม */
+            object-fit: cover;
+            border: 5px solid #155620;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        /* --- 6. ทักษะ (Skills) --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: #e8f5e9; /*ทำทักษะเป็น ป้ายมน ๆ น่ารัก*/
+            color: #155620;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            border: 1px solid #c8e6c9;
+        }
+
+        /* --- 7. การ์ด (การศึกษา/ประสบการณ์) --- */
+        .card-container {
+            display: grid; /*กล่องลอย มีเงา */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 6px solid #155620;
+        }
+
+        .card h3 { color: #155620; margin-bottom: 10px; }
+        .date { color: #666; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+
+        /* --- 8. ผลงาน (Portfolio) --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .portfolio-item:hover { transform: translateY(-5px); } /*เอาเมาส์ชี้แล้ว การ์ดลอยขึ้นนิดนึง */
+        .portfolio-item img { width: 100%; height: 200px; object-fit: cover; }
+        .portfolio-info { padding: 15px; }
+
+        /* --- 9. ส่วนท้าย (Footer) --- */
+        footer {
+            background: #0a015f; /*แถบล่างสีเขียว ตัวอักษรขาว*/
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+        /* ===== Slider ===== */
+
+        .swiper{
+            width:100%;
+            padding:20px 0 60px;
+        }
+
+        .swiper-slide{
+            display:flex;
+            justify-content:center;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev{
+            color:#0a015f;
+        }
+
+        .swiper-pagination-bullet-active{
+            background:#0a015f;
+        }
+        .swiper-slide{
+            display:flex;
+            justify-content:center;
+        }
+
+        .swiper-slide .portfolio-item{
+            width:700px;
+            max-width:100%;
+        }
+    </style>
+</head>
+<body> 
+    
+        
+    
+    <nav class="navbar" >
+        <a href="#" class="logo-text">Portfolio</a>
+
+            <div class="nav-menu-group">
+            <a href="#home">หน้าแรก</a>
+            <a href="#about">เกี่ยวกับฉัน</a>
+            <a href="#skills">ทักษะ</a>
+            <a href="#education">การศึกษา</a>
+            <a href="#experience">กิจกรรมที่เข้าร่วม</a>
+            <a href="#MyPride">ผลงานที่ภาคภูมิใจ</a>
+            </div>
+    </nav>
+    
+    <header id="home">
+        <img src="image/background/Firefly.png" alt="เชฟสุวิจักขณ์">
+        <h1>Farm Suwijak</h1>
+        <p>Consult</p>
+    </header>
+
+    <section id="about">
+        <h2>เกี่ยวกับฉัน</h2>
+        <div class="about-content">
+            <div class="about-img-container">
+                <img src="image/background/profile6(1).jpg" alt="รูปโปรไฟล์">
+            </div>
+            <div class="about-text">
+                <p>
+                  สวัสดีครับผม นายสุวิจักขณ์ โสภานะ นักศึกษาคอมพิวเตอร์ธุรกิจ มีความมุ่งมั่นที่จะก้าวสู่สายงาน AI Content Creator 
+                  โดยตั้งเป้าหมายที่จะนำองค์ความรู้ด้านโครงสร้างธุรกิจ มาผสานเข้ากับเทคโนโลยีสมัยใหม่และเครื่องมือ AI เพื่อคิดค้น วิเคราะห์ 
+                  และสร้างสรรค์คอนเทนต์ที่ตอบโจทย์การใช้งานจริงและช่วยขับเคลื่อนการตลาดดิจิทัล พร้อมช่วยเพิ่มประสิทธิภาพให้แก่องค์กรอย่างยั่งยืน 
+                  ด้วยทักษะความอดทน ความรับผิดชอบ และการทำงานร่วมกับผู้อื่นได้อย่างดีเยี่ยม <br>โดยผมถือคติที่ว่า  <b>"การล้มเหลวไม่ใช่สิ่งที่ผิด แต่คือสิ่งที่จะช่วยให้เราพัฒนา"</b>
+                </p>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="background-color: #fcfcfc;">
+        <h2>ทักษะของฉัน</h2>
+        <div class="skills-grid">
+            <span class="skill-tag">AI Tools & Prompt Engineering</span>
+            <span class="skill-tag">Creativity & Content Creation</span>
+            <span class="skill-tag">Data Analysis & Insight</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Digital Marketing & Social Media</span>
+            
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>การศึกษา</h2>
+        <div class="card-container">
+            <div class="card">
+                <img src="image/background/image_3c9e101b.png" 
+                style="width:100%;height:400px;object-fit:contain;">
+                <h3>มัธยมศึกษาตอนปลาย</h3>
+                <span class="date">2564 - 2566</span>
+                <p>โรงเรียนหนองชุมแสงวิทยาคม (สายวิทย์-คณิต)</p>
+                <p>เกรดเฉลี่ย (GPA): 3.31</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" style="background-color: #fcfcfc;">
+        <h2>กิจกรรมที่เข้าร่วม</h2>
+        
+            <div class="swiper mySwiper">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+
+                    <div class="portfolio-item">
+
+                        <img src="image/background/profile9.jpg"
+                        style="width:100%;height:500px;object-fit:contain;">
+
+                        <div class="portfolio-info">
+
+                        <h3>เข้าร่วมอบรม KSU TikTok Creator Phase#1 </h3>
+                        <p>เกียรติบัตรแสดงความยินดี ศูนย์ดิจิทัลมหาวิทยาลัยกาฬสินธุ์ ได้รับเกียรติบัตรฉบับนี้เพื่อแสดงถึง ได้เข้าร่วมกิจกรรมอบรมออนไลน์ ในหัวข้อ เส้นทางสู่การเป็น<br>
+                        KSU TikTok Creator<br> 
+                        ให้ไว้ ณ วันที่ 7 สิงหาคม 2567</p>
+
+
+                        </div>
+                        
+
+                    </div>
+
+                </div>
+
+                <div class="swiper-slide">
+
+                    <div class="portfolio-item">
+
+                        <img src="image/background/profile10.jpg"
+                        style="width:100%;height:500px;object-fit:contain;">
+
+                        <div class="portfolio-info">
+
+                        <h3>ศึกษาจบหลักสูตร ก้าวแรกสู่ธุรกิจนวัตกรรมสีเขียว (Intro to the Green Business)</h3>
+                        <p>ใบสำคัญจัดทำโดย สำนักงานนวัตกรรมแห่งชาติ (องค์การมหาชน) ร่วมกับ ธนาคารออมสินสำเร็จหลักสูตรอบรมออนไลน์และศึกษาจบ<br>
+                            รายวิชา การเป็นผุ้ประกอบการ ก้าวแรกสู่ธุรกิจนวัตกรรมสีเขียว<br> 
+                            ให้ไว้ ณ วันที่ 24 กุมภาพันธ์ พ.ศ. 2569</p>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+
+                    <div class="portfolio-item">
+
+                        <img src="image/background/profile2.png"
+                        style="width:100%;height:500px;object-fit:contain;">
+
+                        <div class="portfolio-info">
+
+                            <h3>เข้าร่วมอบรม อาชีพวิศวกรรมข้อมูล </h3>
+                            <p>ได้ผ่านการฝึกอบรม ด้วยระบบการเรียนรู้สมรรถนะบุคคล ตามมาตรฐานอาชีพและคุณวุฒิวิชาชีพในรูปแบบอิเล็กทรอนิกส์<br>
+                            สาขาวิชาชีพอุตสาหกรรมดิจิทัล สาขาวิทยาศาสตร์ข้อมูลอาชีพนักวิเคราะห์ข้อมูล ระดับ 3<br> 
+                            ให้ไว้ ณ วันที่ 14 ตุลาคม 2568</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+
+                    <div class="portfolio-item">
+
+                        <img src="image/background/profile3.png"
+                        style="width:100%;height:500px;object-fit:contain;">
+
+                        <div class="portfolio-info">
+
+                            <h3>เข้าร่วมอบรม อาชีพวิศวกรรมข้อมูล </h3>
+                            <p>ได้ผ่านการฝึกอบรม ด้วยระบบการเรียนรู้สมรรถนะบุคคล ตามมาตรฐานอาชีพและคุณวุฒิวิชาชีพในรูปแบบอิเล็กทรอนิกส์<br>
+                            สาขาวิชาชีพอุตสาหกรรมดิจิทัล สาขาวิทยาศาสตร์ข้อมูลอาชีพนักวิเคราะห์ข้อมูล ระดับ 6<br> 
+                            ให้ไว้ ณ วันที่ 15 ตุลาคม 2568</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+
+                    <div class="portfolio-item">
+
+                        <img src="image/background/profile4.png"
+                        style="width:100%;height:500px;object-fit:contain;">
+
+                        <div class="portfolio-info">
+
+                            
+                            <h3>เข้าร่วมอบรม อาชีพวิศวกรรมข้อมูล </h3>
+                            <p>ได้ผ่านการฝึกอบรม ด้วยระบบการเรียนรู้สมรรถนะบุคคล ตามมาตรฐานอาชีพและคุณวุฒิวิชาชีพในรูปแบบอิเล็กทรอนิกส์<br>
+                            สาขาวิชาชีพอุตสาหกรรมดิจิทัล สาขาวิทยาศาสตร์ข้อมูลอาชีพนักวิเคราะห์ข้อมูล ระดับ 4<br> 
+                            ให้ไว้ ณ วันที่ 15 ตุลาคม 2568</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+
+                    <div class="portfolio-item">
+
+                        <img src="image/background/profile5.png"
+                        style="width:100%;height:500px;object-fit:contain;">
+
+                        <div class="portfolio-info">
+
+                            <h3>เข้าร่วมอบรม Essential SQL for Everyone </h3>
+                            <p>ใบรับรองความสำเร็จ สถาบันการเข้าถึงแบบเปิด<br>
+                            สำเร็จหลักสูตรและได้รับเกรดผ่านในวิชา SQL ที่จำเป็นสำหรับทุกคน<br> 
+                            ให้ไว้ ณ วันที่ 14 ตุลาคม 2568</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <div class="swiper-pagination"></div>
+
+            </div>
+
+        <!-- ส่วนแสดงผลงาน MyPride: แยกเฉพาะงาน MV HOOK ชิ้นเดียวเป็นแนวตั้ง -->
+        <section id="MyPride" style="max-width: 900px; margin: 0 auto; padding: 20px; font-family: 'Kanit', sans-serif;">
+            <h2 style="text-align: center; margin-bottom: 40px;">ผลงานที่ภาคภูมิใจ</h2>
+            
+            <!-- กล่องคาร์ดผลงาน MV HOOK (แยกอิสระ) -->
+            <div class="card" style="margin-bottom: 40px; padding: 25px; background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: left;">
+                
+                <!-- 1. รูปภาพปกอยู่ด้านบนสุด ตรงกลางกล่อง -->
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <img src="image/background/MV.png" alt="ภาพหน้าปก MV HOOK" style="width:100%; max-width: 750px; height: auto; max-height: 450px; object-fit: contain; border-radius: 8px;">
+                </div>
+                
+                <!-- 2. เนื้อหาข้อความอธิบายผลงานอยู่ด้านล่างรูปภาพ -->
+                <h3 style="font-size: 22px; color: #333; margin-top: 15px; display: flex; align-items: center;">
+                    <span style="margin-right: 10px;">🎨</span> ภาพหน้าปกคลิปที่ออกแบบ
+                </h3>
+                <span class="date" style="color: #888; font-size: 14px; display: block; margin-bottom: 12px;">ผลงานมิวสิกวิดีโอ (MV HOOK)</span>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;">
+                    ออกแบบภาพโปรโมทและหน้าปกคลิป MV HOOK ของเพลง สาธุ (Sathu) - ASIA7 Feat. ปลาย กนกพร (ไม่ได้นำมาหาผลกำไรทุกรูปแบบ) เป็นผลงานการถ่ายทำและตัดต่อในรายวิชาเรียนที่สร้างสรรค์ออกมาได้อย่างโดดเด่นจนอาจารย์ผู้สอนประทับใจ และได้รับคัดเลือกให้นำไปเผยแพร่โปรโมทบนแฟนเพจอย่างเป็นทางการของสาขาวิชา
+                </p>
+                
+                <!-- 3. ปุ่มกด Canva ถูกย้ายมาอยู่ที่มุมขวาล่างสุดของกล่อง -->
+                <div style="text-align: right;">
+                    <a href="https://canva.link/lmtrzw0k9ipl5vw" target="_blank" style="display: inline-block; background-color: #7d2ae8; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;">➡️ คลิกชมผลงานผ่าน Canva</a>
+                </div>
+
+            </div>
+        </section>
+
+
+            <section id="MyPride">
+            
+                    <!-- ========================================== -->
+            <!-- ผลงานชิ้นที่ 2: หนังสั้น บักเขียน (แยกอิสระอยู่ด้านล่าง) -->
+            <!-- ========================================== -->
+            <div class="card" style="padding: 25px; background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: left;">
+                
+                <!-- 1. รูปภาพโปสเตอร์อยู่ด้านบนสุด ตรงกลางกล่อง -->
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <img src="image/background/POTIE.jpg" alt="ภาพหน้าปกหนังสั้น บักเขียน" style="width:100%; max-width: 750px; height: auto; max-height: 450px; object-fit: contain; border-radius: 8px;">
+                </div>
+                
+                <!-- 2. เนื้อหาข้อความอธิบายผลงานอยู่ด้านล่างรูปภาพ -->
+                <h3 style="font-size: 22px; color: #333; margin-top: 15px; display: flex; align-items: center;">
+                    <span style="margin-right: 10px;">🎬</span> หนังสั้นเรื่อง "บักเซียน"
+                </h3>
+                <span class="date" style="color: #888; font-size: 14px; display: block; margin-bottom: 12px;">ผลงานการตัดต่อและเขียนบท</span>
+                <p style="color: #555; line-height: 1.6; margin-bottom: 25px;">
+                    ผลงานการแสดงและการสร้างหนังสั้นที่มีการประยุกต์ใช้เทคโนโลยี AI ในการระดมไอเดียและเขียนบท พร้อมทั้งรับหน้าที่เป็นนักแสดงตัวหลักในกระบวนการถ่ายทำภาพยนตร์จริง เพื่อแสดงศักยภาพในด้านการคิดเนื้อหาเชิงสร้างสรรค์ร่วมกับปัญญาประดิษฐ์ (AI Tools) ในฐานะ AI Content Creator
+                </p>
+                
+                <!-- 3. ปุ่มกด Canva อัปเดตลิงก์ใหม่ล่าสุด และย้ายมาอยู่ที่มุมขวาล่างสุดของกล่อง -->
+                <div style="text-align: right;">
+                    <a href="https://canva.link/9gjyt0otalj4n1k" target="_blank" style="display: inline-block; background-color: #7d2ae8; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s;">➡️ คลิกชมผลงานผ่าน Canva</a>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+
+    <footer style="width: 100vw; margin-left: calc(-50vw + 50%); background-color: #000066; padding: 30px 0; text-align: center; color: white; box-sizing: border-box;" >
+        <h3>ติดต่อฉัน</h3>
+        <p>
+เบอร์โทร: 083-232-9670 | อีเมล: suwijak.so@ksu.ac.th</p>
+        <p>&copy; 2026 Portfolio | Farm Suwijak</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* สั่งให้หน้าเว็บสูงยืดสุดตามขนาดบราวเซอร์ */
+    overflow-x: hidden; /* บล็อกแถบเลื่อนแนวนอน */
+}>
+        
+    const swiper = new Swiper(".mySwiper",{
+
+        loop:true,
+
+        slidesPerView:1,
+
+        spaceBetween:30,
+
+        navigation:{
+            nextEl:".swiper-button-next",
+            prevEl:".swiper-button-prev",
+        },
+
+        pagination:{
+            el:".swiper-pagination",
+            clickable:true,
+        }
+
+    });
+
+    </script>
+</body>
+</html>
